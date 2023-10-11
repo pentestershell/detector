@@ -1,11 +1,10 @@
 import requests
-import socket
 
-def obtener_sistema_operativo(host):
+def obtener_sistema_operativo(url):
     try:
-        respuesta = requests.get(f"http://{host}")
+        respuesta = requests.get(url)
         cabecera_servidor = respuesta.headers.get('Server')
-
+        
         if cabecera_servidor:
             return f"El servidor utiliza: {cabecera_servidor}"
         else:
@@ -27,31 +26,16 @@ def main():
     imprimir_banner()
 
     while True:
-        print("\nSeleccione una opción:")
-        print("1. Comprobar servidor de una web")
-        print("2. Comprobar sistema operativo de una IP")
-        print("3. Salir")
+        url = input("Ingrese la URL del objetivo (o escriba 'salir' para salir): ")
 
-        opcion = input("Ingrese el número de la opción: ")
-
-        if opcion == '1':
-            url = input("Ingrese la URL del objetivo (o escriba 'salir' para volver al menú principal): ")
-            if url.lower() == 'salir':
-                continue
-            resultado = obtener_sistema_operativo(url)
-            print(resultado)
-        elif opcion == '2':
-            ip = input("Ingrese la dirección IP del objetivo (o escriba 'salir' para volver al menú principal): ")
-            if ip.lower() == 'salir':
-                continue
-            resultado = obtener_sistema_operativo(ip)
-            print(resultado)
-        elif opcion == '3':
+        if url.lower() == 'salir':
             print("Saliendo del programa. ¡Hasta luego!")
             break
-        else:
-            print("Opción no válida. Inténtelo de nuevo.")
+
+        resultado = obtener_sistema_operativo(url)
+        print(resultado)
 
 if __name__ == "__main__":
     main()
+
 
