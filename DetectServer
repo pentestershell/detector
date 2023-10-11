@@ -1,0 +1,39 @@
+import requests
+
+def obtener_sistema_operativo(url):
+    try:
+        respuesta = requests.get(url)
+        cabecera_servidor = respuesta.headers.get('Server')
+        
+        if cabecera_servidor:
+            return f"El servidor utiliza: {cabecera_servidor}"
+        else:
+            return "No se pudo determinar el sistema operativo."
+    except requests.exceptions.RequestException as e:
+        return f"Error al hacer la solicitud: {e}"
+
+def imprimir_banner():
+    banner = """
+    ************************************************************
+    *                     Bienvenido a DetectServer             *
+    *                     -----------------------             *
+    *                 Comprobador de Sistema Operativo         *
+    ************************************************************
+    """
+    print("\033[91m" + banner + "\033[0m")  # Código ANSI para texto rojo
+
+def main():
+    imprimir_banner()
+
+    while True:
+        url = input("Ingrese la URL del objetivo (o escriba 'salir' para salir): ")
+
+        if url.lower() == 'salir':
+            print("Saliendo del programa. ¡Hasta luego!")
+            break
+
+        resultado = obtener_sistema_operativo(url)
+        print(resultado)
+
+if __name__ == "__main__":
+    main()
