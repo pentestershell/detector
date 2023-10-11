@@ -1,0 +1,2 @@
+Para que este script funcione hay que incluir en la URL el protocólo http o https.
+Hay que instalar la la biblioteca requests.
