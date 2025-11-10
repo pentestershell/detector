@@ -16,8 +16,8 @@ def imprimir_banner():
     banner = """
     ************************************************************
     *                     Bienvenido a DetectServer             *
-    *                     -----------------------             *
-    *                 Comprobador de Sistema Operativo         *
+    *                     -----------------------               *
+    *                 Comprobador del servidor                  *
     ************************************************************
     """
     print("\033[91m" + banner + "\033[0m")  # Código ANSI para texto rojo
